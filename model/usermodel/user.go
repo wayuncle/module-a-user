@@ -2,8 +2,8 @@ package usermodel
 
 import (
 	"github.com/gogf/gf/net/ghttp"
-	"module-a-user/rdb/userrdb"
-	Usertype "module-a-user/type/usertype"
+	"github.com/wayuncle/module-a-user/rdb/userrdb"
+	Usertype "github.com/wayuncle/module-a-user/type/usertype"
 )
 
 // Index
@@ -20,7 +20,7 @@ func Index(r *ghttp.Request) {
 // @Author: Zhenwei Huo
 // @Date: 2022-03-31 10:02:16
 // @Param user *Usertype.User
-func Create(user *Usertype.AddReq)  {
+func Create(user *Usertype.AddReq) {
 	userrdb.Create(user)
 }
 
@@ -29,7 +29,7 @@ func Create(user *Usertype.AddReq)  {
 // @Author: Zhenwei Huo
 // @Date: 2022-03-31 10:18:42
 // @Param user *Usertype.UpdateReq
-func Save(user *Usertype.UpdateReq)  {
+func Save(user *Usertype.UpdateReq) {
 	userrdb.Save(user)
 }
 
@@ -38,7 +38,7 @@ func Save(user *Usertype.UpdateReq)  {
 // @Author: Zhenwei Huo
 // @Date: 2022-03-31 10:18:55
 // @Param id int
-func Delete(id int)  {
+func Delete(id int) {
 	userrdb.Delete(id)
 }
 
@@ -47,6 +47,6 @@ func Delete(id int)  {
 // @Author: Zhenwei Huo
 // @Date: 2022-03-31 10:19:07
 // @Param id int
-func Query(id int)  {
+func Query(id int) {
 	userrdb.Query(id)
 }
