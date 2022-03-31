@@ -1,0 +1,6 @@
+go.sum
+*.exe
+logs/
+log/
+.idea/
+.vscode
