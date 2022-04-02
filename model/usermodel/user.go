@@ -20,8 +20,9 @@ func Index(r *ghttp.Request) {
 // @Author: Zhenwei Huo
 // @Date: 2022-03-31 10:02:16
 // @Param user *Usertype.User
-func Create(user *Usertype.AddReq) {
-	userrdb.Create(user)
+func Create(user *Usertype.AddReq) (int64, error) {
+	row, err := userrdb.Create(user)
+	return row, err
 }
 
 // Save
@@ -29,24 +30,27 @@ func Create(user *Usertype.AddReq) {
 // @Author: Zhenwei Huo
 // @Date: 2022-03-31 10:18:42
 // @Param user *Usertype.UpdateReq
-func Save(user *Usertype.UpdateReq) {
-	userrdb.Save(user)
+func Save(user *Usertype.UpdateReq) (int64, error) {
+	row, err := userrdb.Save(user)
+	return row, err
 }
 
-// Delete
+// DeleteUserById
 // @Description: 根据id删除用户
 // @Author: Zhenwei Huo
 // @Date: 2022-03-31 10:18:55
 // @Param id int
-func Delete(id int) {
-	userrdb.Delete(id)
+func DeleteUserById(id int) error {
+	err := userrdb.DeleteUserById(id)
+	return err
 }
 
-// Query
+// GetUserById
 // @Description: 根据id查询用户
 // @Author: Zhenwei Huo
 // @Date: 2022-03-31 10:19:07
 // @Param id int
-func Query(id int) {
-	userrdb.Query(id)
+func GetUserById(id int) (*Usertype.User, error) {
+	user, err := userrdb.GetUserById(id)
+	return user, err
 }

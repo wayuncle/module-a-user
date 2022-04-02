@@ -45,13 +45,13 @@ func Save(user *Usertype.UpdateReq) (int64, error) {
 	return result.LastInsertId()
 }
 
-// Delete
+// DeleteUserById
 // @Description: 根据id删除用户
 // @Author: Zhenwei Huo
 // @Date: 2022-03-31 10:05:49
 // @Param id int
 // @Return: error
-func Delete(id int) error {
+func DeleteUserById(id int) error {
 	orm, err := pdb.GetDBInstance()
 	if err != nil {
 		plog.Error("", "%v", err)
@@ -66,12 +66,12 @@ func Delete(id int) error {
 	return nil
 }
 
-// Query
+// GetUserById
 // @Description: 根据id查询用户
 // @Author: Zhenwei Huo
 // @Date: 2022-03-31 10:15:57
 // @Param id int
-func Query(id int) (*Usertype.User, error) {
+func GetUserById(id int) (*Usertype.User, error) {
 	orm, err := pdb.GetDBInstance()
 	if err != nil {
 		plog.Error("", "%v", err)
