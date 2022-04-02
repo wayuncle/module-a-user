@@ -64,13 +64,14 @@ func DeleteUserById(id int) error {
 		plog.Error("", "%v", err)
 		return err
 	}
-	fmt.Println("rdb id", id)
-	result, err := orm.Table(Usertype.TableName()).Delete("id=?", id)
-	fmt.Println("err", result)
+	fmt.Println("rdb id222", id)
+	result, err := orm.Table(Usertype.TableName()).Where("id", id).Delete()
+	fmt.Println("result", result)
 	if err != nil {
 		plog.Error("", "%v", err)
 		return err
 	}
+	fmt.Println("删除结束")
 	return nil
 }
 
@@ -80,13 +81,14 @@ func DeleteUserById(id int) error {
 // @Date: 2022-03-31 10:15:57
 // @Param id int
 func GetUserById(id int) (*Usertype.User, error) {
+	fmt.Println("rdb id", id)
 	orm, err := pdb.GetDBInstance()
 	if err != nil {
 		plog.Error("", "%v", err)
 		return nil, err
 	}
 	user := (*Usertype.User)(nil)
-	errs := orm.Table(Usertype.TableName()).Where("id=?", id).Structs(&user)
+	errs := orm.Table(Usertype.TableName()).Where("id", id).Structs(&user)
 	fmt.Println("data", "err", user, errs)
 	return user, errs
 }
