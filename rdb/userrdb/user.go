@@ -80,15 +80,15 @@ func DeleteUserById(id int) error {
 // @Author: Zhenwei Huo
 // @Date: 2022-03-31 10:15:57
 // @Param id int
-func GetUserById(req *Usertype.User) (*Usertype.User, error) {
-	plog.Info("rdb id", "%v", req.Id)
+func GetUserById(id int) ([]*Usertype.User, error) {
+	plog.Info("rdb id", "%v", id)
 	orm, err := pdb.GetDBInstance()
 	if err != nil {
 		plog.Error("", "%v", err)
 		return nil, err
 	}
-	user := (*Usertype.User)(nil)
-	errs := orm.Table(Usertype.TableName()).Where(req).Structs(&user)
-	plog.Info("user", "%v", user, "  ", "err", "%v", errs)
-	return user, errs
+	result := make([]*Usertype.User, 0)
+	errs := orm.Table(Usertype.TableName()).Where("id", id).Structs(&result)
+	plog.Info("user", "%v", result, "  ", "err", "%v", errs)
+	return result, errs
 }
