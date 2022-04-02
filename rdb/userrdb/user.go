@@ -57,15 +57,15 @@ func Save(user *Usertype.UpdateReq) (int64, error) {
 // @Date: 2022-03-31 10:05:49
 // @Param id int
 // @Return: error
-func DeleteUserById(id int) error {
-	fmt.Println("rdb id", id)
+func DeleteUserById(req *Usertype.User) error {
+	fmt.Println("rdb id", req.Id)
 	orm, err := pdb.GetDBInstance()
 	if err != nil {
 		plog.Error("", "%v", err)
 		return err
 	}
-	fmt.Println("rdb id222", id)
-	result, err := orm.Table(Usertype.TableName()).Where("id", id).Delete()
+	fmt.Println("rdb id22233", req.Id)
+	result, err := orm.Table(Usertype.TableName()).Where(req).Delete()
 	fmt.Println("result", result)
 	if err != nil {
 		plog.Error("", "%v", err)
@@ -80,15 +80,15 @@ func DeleteUserById(id int) error {
 // @Author: Zhenwei Huo
 // @Date: 2022-03-31 10:15:57
 // @Param id int
-func GetUserById(id int) (*Usertype.User, error) {
-	fmt.Println("rdb id", id)
+func GetUserById(req *Usertype.User) (*Usertype.User, error) {
+	plog.Info("rdb id", "%v", req.Id)
 	orm, err := pdb.GetDBInstance()
 	if err != nil {
 		plog.Error("", "%v", err)
 		return nil, err
 	}
 	user := (*Usertype.User)(nil)
-	errs := orm.Table(Usertype.TableName()).Where("id", id).Structs(&user)
-	fmt.Println("data", "err", user, errs)
+	errs := orm.Table(Usertype.TableName()).Where(req).Structs(&user)
+	plog.Info("user", "%v", user, "  ", "err", "%v", errs)
 	return user, errs
 }

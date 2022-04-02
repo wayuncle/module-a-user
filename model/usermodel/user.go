@@ -5,6 +5,7 @@ import (
 	"github.com/gogf/gf/net/ghttp"
 	"github.com/wayuncle/module-a-user/rdb/userrdb"
 	Usertype "github.com/wayuncle/module-a-user/type/usertype"
+	"msp-git.connext.com.cn/connext-go-third/third-log/plog"
 )
 
 // Index
@@ -44,8 +45,8 @@ func Save(user *Usertype.UpdateReq) (int64, error) {
 // @Date: 2022-03-31 10:18:55
 // @Param id int
 func DeleteUserById(req *Usertype.IdReq) error {
-	fmt.Println("DeleteUserById user", req.Id)
-	err := userrdb.DeleteUserById(req.Id)
+	plog.Info("DeleteUserById user_id", "%v", req.Id)
+	err := userrdb.DeleteUserById(&Usertype.User{Id: req.Id})
 	return err
 }
 
@@ -55,7 +56,7 @@ func DeleteUserById(req *Usertype.IdReq) error {
 // @Date: 2022-03-31 10:19:07
 // @Param id int
 func GetUserById(req *Usertype.IdReq) (*Usertype.User, error) {
-	fmt.Println("GetUserById user", req.Id)
-	user, err := userrdb.GetUserById(req.Id)
+	plog.Info("GetUserById user_id", "%v", req.Id)
+	user, err := userrdb.GetUserById(&Usertype.User{Id: req.Id})
 	return user, err
 }
