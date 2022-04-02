@@ -13,15 +13,21 @@ import (
 // @Date: 2022-03-31 09:38:47
 // @Param user *Usertype.AddReq
 func Create(user *Usertype.AddReq) (int64, error) {
+	fmt.Println("进入到rdb create")
 	orm, err := pdb.GetDBInstance()
+	fmt.Println("进入到rdb create orm", "err", orm, err)
 	if err != nil {
 		plog.Error("", "%v", err)
 		return -1, err
 	}
+	fmt.Println("开始执行sql")
 	result, err := orm.Table(Usertype.TableName()).Data(user).Insert()
+	fmt.Println("进入到rdb create result", "err", result, err)
 	if err != nil {
+		plog.Error("", "%v", err)
 		return -1, err
 	}
+	fmt.Println("返回")
 	return result.LastInsertId()
 }
 
