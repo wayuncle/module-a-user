@@ -57,15 +57,15 @@ func Save(user *Usertype.UpdateReq) (int64, error) {
 // @Date: 2022-03-31 10:05:49
 // @Param id int
 // @Return: error
-func DeleteUserById(req *Usertype.User) error {
-	fmt.Println("rdb id", req.Id)
+func DeleteUserById(id int) error {
+	fmt.Println("rdb id", id)
 	orm, err := pdb.GetDBInstance()
 	fmt.Println("rdb err", err)
 	if err != nil {
 		plog.Error("", "%v", err)
 		return err
 	}
-	result, err := orm.Table(Usertype.TableName()).Where("id", 3).Delete()
+	result, err := orm.Table(Usertype.TableName()).Where("id", id).Delete()
 	fmt.Println("result", "err", result, err)
 	if err != nil {
 		plog.Error("", "%v", err)

@@ -46,7 +46,7 @@ func Save(user *Usertype.UpdateReq) (int64, error) {
 // @Param id int
 func DeleteUserById(req *Usertype.IdReq) error {
 	plog.Info("DeleteUserById user_id", "%v", req.Id)
-	err := userrdb.DeleteUserById(&Usertype.User{Id: req.Id})
+	err := userrdb.DeleteUserById(req.Id)
 	return err
 }
 
