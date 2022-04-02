@@ -21,3 +21,11 @@ type User struct {
 func TableName() string {
 	return "t_sys_user"
 }
+
+// IdReq
+// @Description: 删除
+// @Author: Zhenwei Huo
+// @Date: 2022-04-02 13:32:52
+type IdReq struct {
+	Id int `json:"id"`
+}

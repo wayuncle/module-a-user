@@ -43,9 +43,9 @@ func Save(user *Usertype.UpdateReq) (int64, error) {
 // @Author: Zhenwei Huo
 // @Date: 2022-03-31 10:18:55
 // @Param id int
-func DeleteUserById(id int) error {
-	fmt.Println("DeleteUserById user", id)
-	err := userrdb.DeleteUserById(id)
+func DeleteUserById(req *Usertype.IdReq) error {
+	fmt.Println("DeleteUserById user", req.Id)
+	err := userrdb.DeleteUserById(req.Id)
 	return err
 }
 
@@ -54,8 +54,8 @@ func DeleteUserById(id int) error {
 // @Author: Zhenwei Huo
 // @Date: 2022-03-31 10:19:07
 // @Param id int
-func GetUserById(id int) (*Usertype.User, error) {
-	fmt.Println("GetUserById user", id)
-	user, err := userrdb.GetUserById(id)
+func GetUserById(req *Usertype.IdReq) (*Usertype.User, error) {
+	fmt.Println("GetUserById user", req.Id)
+	user, err := userrdb.GetUserById(req.Id)
 	return user, err
 }
