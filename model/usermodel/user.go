@@ -1,6 +1,7 @@
 package usermodel
 
 import (
+	"fmt"
 	"github.com/gogf/gf/net/ghttp"
 	"github.com/wayuncle/module-a-user/rdb/userrdb"
 	Usertype "github.com/wayuncle/module-a-user/type/usertype"
@@ -21,6 +22,7 @@ func Index(r *ghttp.Request) {
 // @Date: 2022-03-31 10:02:16
 // @Param user *Usertype.User
 func Create(user *Usertype.AddReq) (int64, error) {
+	fmt.Println("user", user.Name)
 	row, err := userrdb.Create(user)
 	return row, err
 }
@@ -31,6 +33,7 @@ func Create(user *Usertype.AddReq) (int64, error) {
 // @Date: 2022-03-31 10:18:42
 // @Param user *Usertype.UpdateReq
 func Save(user *Usertype.UpdateReq) (int64, error) {
+	fmt.Println("update user", user.Name)
 	row, err := userrdb.Save(user)
 	return row, err
 }
@@ -41,6 +44,7 @@ func Save(user *Usertype.UpdateReq) (int64, error) {
 // @Date: 2022-03-31 10:18:55
 // @Param id int
 func DeleteUserById(id int) error {
+	fmt.Println("DeleteUserById user", id)
 	err := userrdb.DeleteUserById(id)
 	return err
 }
@@ -51,6 +55,7 @@ func DeleteUserById(id int) error {
 // @Date: 2022-03-31 10:19:07
 // @Param id int
 func GetUserById(id int) (*Usertype.User, error) {
+	fmt.Println("GetUserById user", id)
 	user, err := userrdb.GetUserById(id)
 	return user, err
 }
