@@ -55,8 +55,8 @@ func DeleteUserById(req *Usertype.IdReq) error {
 // @Author: Zhenwei Huo
 // @Date: 2022-03-31 10:19:07
 // @Param id int
-func GetUserById(req *Usertype.IdReq) (*Usertype.User, error) {
+func GetUserById(req *Usertype.IdReq) ([]*Usertype.User, error) {
 	plog.Info("GetUserById user_id", "%v", req.Id)
-	user, err := userrdb.GetUserById(&Usertype.User{Id: req.Id})
+	user, err := userrdb.GetUserById(req.Id)
 	return user, err
 }
