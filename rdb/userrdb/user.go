@@ -60,13 +60,13 @@ func Save(user *Usertype.UpdateReq) (int64, error) {
 func DeleteUserById(req *Usertype.User) error {
 	fmt.Println("rdb id", req.Id)
 	orm, err := pdb.GetDBInstance()
+	fmt.Println("rdb err", err)
 	if err != nil {
 		plog.Error("", "%v", err)
 		return err
 	}
-	fmt.Println("rdb id22233", req.Id)
-	result, err := orm.Table(Usertype.TableName()).Where(req).Delete()
-	fmt.Println("result", result)
+	result, err := orm.Table(Usertype.TableName()).Where("id", 3).Delete()
+	fmt.Println("result", "err", result, err)
 	if err != nil {
 		plog.Error("", "%v", err)
 		return err
